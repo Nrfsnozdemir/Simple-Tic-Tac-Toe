@@ -1,29 +1,75 @@
 package tictactoe;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // write your code here
+        Boolean checkInteger = false;
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter cells: ");
+        String grid = scanner.nextLine();
+        char escape = ' ';
+        grid = grid.replace('_', ' ');
 
-        String symbol = scanner.nextLine();
+
+        char[][] arrList = {
+                {grid.charAt(0), grid.charAt(1), grid.charAt(2)},
+                {grid.charAt(3), grid.charAt(4), grid.charAt(5)},
+                {grid.charAt(6), grid.charAt(7), grid.charAt(8)},
+        };
+        System.out.println("---------");
+        System.out.println("| " + grid.charAt(0) + " " + grid.charAt(1) + " " + grid.charAt(2) + " |");
+        System.out.println("| " + grid.charAt(3) + " " + grid.charAt(4) + " " + grid.charAt(5) + " |");
+        System.out.println("| " + grid.charAt(6) + " " + grid.charAt(7) + " " + grid.charAt(8) + " |");
+        System.out.println("---------");
+
+
+        while (true) {
+            System.out.println("Enter the cordinates: ");
+
+            String cordinate = scanner.nextLine();
+
+            char[] chars = cordinate.toCharArray();
+
+            for (char each : chars) {
+                if (Character.isDigit(each)) {
+                    checkInteger = true;
+                }
+            }
+
+
+            char a = chars[0];
+            int firstCordinate2 = a - '0';
+
+            char b = chars[2];
+            int secondCordinate2 = b - '0';
+
+
+            if (checkInteger) {
+
+                if (firstCordinate2 <= 3 && secondCordinate2 <= 3) {
+                    if (arrList[firstCordinate2 - 1][secondCordinate2 - 1] == ' ' || arrList[firstCordinate2 - 1][secondCordinate2 - 1] == '_') {
+                        arrList[firstCordinate2 - 1][secondCordinate2 - 1] = 'X';
+                        break;
+                    } else {
+                        System.out.println("This cell is occupied! Choose another one!");
+                    }
+                } else {
+                    System.out.println("Coordinates should be from 1 to 3!");
+
+
+                }
+            } else {
+                System.out.println("You should enter numbers!");
+            }
+        }
+
 
         System.out.println("---------");
-        System.out.println( "| " + symbol.charAt(0) + " " + symbol.charAt(1) + " " +symbol.charAt(2) + " |");
-        System.out.println( "| " + symbol.charAt(3) + " " + symbol.charAt(4) + " " +symbol.charAt(5) + " |");
-        System.out.println( "| " + symbol.charAt(6) + " " + symbol.charAt(7) + " " +symbol.charAt(8) + " |");
-        System.out.println("---------");
-
-        //Scanner sc=new Scanner(System.in);
-        //
-        //        System.out.println("Enter Cells: ");
-        //        String line=sc.nextLine();
-        //        char[] ch = line.toCharArray();
-        //        System.out.println("---------");
-        //        System.out.println("| "+ch[0]+" "+ch[1]+" "+ch[2]+" |");
-        //        System.out.println("| "+ch[3]+" "+ch[4]+" "+ch[5]+" |");
-        //        System.out.println("| "+ch[6]+" "+ch[7]+" "+ch[8]+" |");
-        //        System.out.println("---------");
+        System.out.println("| " + arrList[0][0] + " " + arrList[0][1] + " " + arrList[0][2] + " |");
+        System.out.println("| " + arrList[1][0] + " " + arrList[1][1] + " " + arrList[1][2] + " |");
+        System.out.println("| " + arrList[2][0] + " " + arrList[2][1] + " " + arrList[2][2] + " |");
+        System.out.print("---------");
     }
 }
